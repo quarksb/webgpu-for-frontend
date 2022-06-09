@@ -15,7 +15,20 @@ const Initialize = async() => {
     context.configure({
         device: device,
         format: format,
-        compositingAlphaMode: "opaque"
+        alphaMode: "opaque"
+    });
+
+    const bindGroupLayout = device.createBindGroupLayout({
+        entries: [],
+    });
+
+    const bindGroup = device.createBindGroup({
+        layout: bindGroupLayout,
+        entries: []
+    });
+    
+    const pipelineLayout = device.createPipelineLayout({
+        bindGroupLayouts: [bindGroupLayout]
     });
 
     const pipeline = device.createRenderPipeline({
@@ -38,7 +51,9 @@ const Initialize = async() => {
 
         primitive : {
             topology : "triangle-list"
-        }
+        },
+
+        layout: pipelineLayout
     });
 
     //command encoder: records draw commands for submission
@@ -55,6 +70,7 @@ const Initialize = async() => {
         }]
     });
     renderpass.setPipeline(pipeline);
+    renderpass.setBindGroup(0, bindGroup)
     renderpass.draw(3, 1, 0, 0);
     renderpass.end();
 
