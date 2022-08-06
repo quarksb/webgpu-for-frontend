@@ -74,7 +74,17 @@ export class Renderer {
                     binding: 0,
                     visibility: GPUShaderStage.VERTEX,
                     buffer: {}
-                }
+                },
+                {
+                    binding: 1,
+                    visibility: GPUShaderStage.FRAGMENT,
+                    texture: {}
+                },
+                {
+                    binding: 2,
+                    visibility: GPUShaderStage.FRAGMENT,
+                    sampler: {}
+                },
             ]
 
         });
@@ -87,6 +97,14 @@ export class Renderer {
                     resource: {
                         buffer: this.uniformBuffer
                     }
+                },
+                {
+                    binding: 1,
+                    resource: this.material.view
+                },
+                {
+                    binding: 2,
+                    resource: this.material.sampler
                 }
             ]
         });
@@ -126,8 +144,8 @@ export class Renderer {
     async createAssets() {
         this.triangleMesh = new TriangleMesh(this.device);
         this.material = new Material();
-        
-        await this.material.initialize(this.device, "img/chat.jpg");
+
+        await this.material.initialize(this.device, "dist/img/chat.jpg");
     }
 
     render = () => {

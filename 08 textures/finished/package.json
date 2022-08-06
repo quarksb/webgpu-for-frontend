@@ -7,7 +7,7 @@
     "start": "npm run install-missing-dependencies && npm run build && npm run serve",
     "install-missing-dependencies": "npm i",
     "build": "webpack --config webpack.config.js",
-    "serve": "http-server -c-1 --cors='*'"
+    "serve": "live-server --cors"
   },
   "keywords": [],
   "author": "",
@@ -15,13 +15,9 @@
   "dependencies": {
     "@types/node": "^17.0.30",
     "@webgpu/types": "^0.1.15",
-    "buffer": "^6.0.3",
-    "fs": "^0.0.1-security",
     "gl-matrix": "^3.4.3",
     "http-server": "^14.1.0",
     "node": "^17.7.2",
-    "node-fetch": "^3.2.6",
-    "path": "^0.12.7",
     "ts-loader": "^9.2.9",
     "ts-shader-loader": "^1.0.6",
     "typescript": "^4.6.4",
