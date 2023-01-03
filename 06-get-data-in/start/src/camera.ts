@@ -18,16 +18,14 @@ export class Camera {
     }
 
     recalculate_vectors() {
-        
-        this.forwards = new Float32Array(
+         this.forwards = new Float32Array(
             [
                 Math.cos(this.theta * 180.0 / Math.PI) * Math.cos(this.phi * 180.0 / Math.PI),
                 Math.sin(this.theta * 180.0 / Math.PI) * Math.cos(this.phi * 180.0 / Math.PI),
                 Math.sin(this.phi * 180.0 / Math.PI)
             ]
         );
-        
-        this.right = new Float32Array([0.0, 0.0, 0.0]);
+         this.right = new Float32Array([0.0, 0.0, 0.0]);
         vec3.cross(this.right, this.forwards, [0.0, 0.0, 1.0]);
         this.up = new Float32Array([0.0, 0.0, 0.0]);
         vec3.cross(this.up, this.right, this.forwards);

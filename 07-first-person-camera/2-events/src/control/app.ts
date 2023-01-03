@@ -12,7 +12,6 @@ export class App {
     keyLabel: HTMLElement;
     mouseXLabel: HTMLElement;
     mouseYLabel: HTMLElement;
-    
     constructor(canvas: HTMLCanvasElement) {
         this.canvas = canvas;
 

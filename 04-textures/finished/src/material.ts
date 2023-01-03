@@ -1,5 +1,4 @@
 export class Material {
-    
     texture: GPUTexture
     view: GPUTextureView
     sampler: GPUSampler
@@ -32,8 +31,7 @@ export class Material {
             maxAnisotropy: 1
         };
         this.sampler = device.createSampler(samplerDescriptor);
-        
-    }
+     }
 
     async loadImageBitmap(device: GPUDevice, imageData: ImageBitmap) {
 

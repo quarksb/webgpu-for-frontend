@@ -18,7 +18,6 @@ export class Renderer {
         await this.setupDevice();
 
         await this.createAssets();
-    
         await this.makePipeline();
 
         this.render();
@@ -48,8 +47,7 @@ export class Renderer {
     }
 
     async createAssets() {
-        
-    }
+     }
 
     render = () => {
 
@@ -66,9 +64,7 @@ export class Renderer {
                 storeOp: "store"
             }]
         });
-        
-        renderpass.end();
-    
+         renderpass.end();
         this.device.queue.submit([commandEncoder.finish()]);
 
         requestAnimationFrame(this.render);

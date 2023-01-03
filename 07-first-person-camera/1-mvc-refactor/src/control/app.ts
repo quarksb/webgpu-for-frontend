@@ -6,7 +6,6 @@ export class App {
     canvas: HTMLCanvasElement;
     renderer: Renderer;
     scene: Scene;
-    
     constructor(canvas: HTMLCanvasElement) {
         this.canvas = canvas;
 

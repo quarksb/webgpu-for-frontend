@@ -36,7 +36,6 @@ export class Renderer {
         await this.setupDevice();
 
         await this.createAssets();
-    
         await this.makePipeline();
 
         this.render();
@@ -77,7 +76,6 @@ export class Renderer {
             ]
 
         });
-    
         this.ray_tracing_bind_group = this.device.createBindGroup({
             layout: ray_tracing_bind_group_layout,
             entries: [
@@ -87,15 +85,13 @@ export class Renderer {
                 }
             ]
         });
-        
-        const ray_tracing_pipeline_layout = this.device.createPipelineLayout({
+         const ray_tracing_pipeline_layout = this.device.createPipelineLayout({
             bindGroupLayouts: [ray_tracing_bind_group_layout]
         });
 
         this.ray_tracing_pipeline = this.device.createComputePipeline({
             layout: ray_tracing_pipeline_layout,
-            
-            compute: {
+                 compute: {
                 module: this.device.createShaderModule({
                 code: raytracer_kernel,
             }),
@@ -139,8 +135,7 @@ export class Renderer {
 
         this.screen_pipeline = this.device.createRenderPipeline({
             layout: screen_pipeline_layout,
-            
-            vertex: {
+                 vertex: {
                 module: this.device.createShaderModule({
                 code: screen_shader,
             }),
@@ -163,12 +158,10 @@ export class Renderer {
                 topology: "triangle-list"
             }
         });
-        
-    }
+     }
 
     async createAssets() {
-        
-        this.color_buffer = this.device.createTexture(
+         this.color_buffer = this.device.createTexture(
             {
                 size: {
                     width: this.canvas.width,
@@ -215,9 +208,7 @@ export class Renderer {
         renderpass.setPipeline(this.screen_pipeline);
         renderpass.setBindGroup(0, this.screen_bind_group);
         renderpass.draw(6, 1, 0, 0);
-        
-        renderpass.end();
-    
+         renderpass.end();
         this.device.queue.submit([commandEncoder.finish()]);
 
         requestAnimationFrame(this.render);

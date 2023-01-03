@@ -15,7 +15,6 @@ export class App {
 
     forwards_amount: number;
     right_amount: number;
-    
     constructor(canvas: HTMLCanvasElement) {
         this.canvas = canvas;
 
@@ -49,8 +48,7 @@ export class App {
             "mousemove", 
             (event: MouseEvent) => {this.handle_mouse_move(event);}
         );
-        
-    }
+     }
 
     run = () => {
 
@@ -107,8 +105,7 @@ export class App {
     handle_mouse_move(event: MouseEvent) {
         this.mouseXLabel.innerText = event.clientX.toString();
         this.mouseYLabel.innerText = event.clientY.toString();
-        
-        this.scene.spin_player(
+         this.scene.spin_player(
             event.movementX / 5, event.movementY / 5
         );
     }

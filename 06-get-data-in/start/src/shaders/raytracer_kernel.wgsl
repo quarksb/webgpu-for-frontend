@@ -40,7 +40,6 @@ fn main(@builtin(global_invocation_id) GlobalInvocationID : vec3<u32>) {
 }
 
 fn hit(ray: Ray, sphere: Sphere) -> bool {
-    
     let a: f32 = dot(ray.direction, ray.direction);
     let b: f32 = 2.0 * dot(ray.direction, ray.origin - sphere.center);
     let c: f32 = dot(ray.origin - sphere.center, ray.origin - sphere.center) - sphere.radius * sphere.radius;

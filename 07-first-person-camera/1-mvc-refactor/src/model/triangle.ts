@@ -20,8 +20,7 @@ export class Triangle {
         this.model = mat4.create();
         mat4.translate(this.model, this.model, this.position);
         mat4.rotateZ(this.model, this.model, Deg2Rad(this.eulers[2]));
-        
-    }
+     }
 
     get_model(): mat4 {
         return this.model;

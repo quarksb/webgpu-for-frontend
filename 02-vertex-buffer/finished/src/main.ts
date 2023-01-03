@@ -29,7 +29,6 @@ const Initialize = async() => {
         layout: bindGroupLayout,
         entries: []
     });
-    
     const pipelineLayout = device.createPipelineLayout({
         bindGroupLayouts: [bindGroupLayout]
     });

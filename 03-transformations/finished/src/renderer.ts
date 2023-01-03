@@ -34,7 +34,6 @@ export class Renderer {
         await this.setupDevice();
 
         this.createAssets();
-    
         await this.makePipeline();
 
         this.render();
@@ -76,7 +75,6 @@ export class Renderer {
             ]
 
         });
-    
         this.bindGroup = this.device.createBindGroup({
             layout: bindGroupLayout,
             entries: [
@@ -88,11 +86,9 @@ export class Renderer {
                 }
             ]
         });
-        
-        const pipelineLayout = this.device.createPipelineLayout({
+         const pipelineLayout = this.device.createPipelineLayout({
             bindGroupLayouts: [bindGroupLayout]
         });
-    
         this.pipeline = this.device.createRenderPipeline({
             vertex : {
                 module : this.device.createShaderModule({
@@ -101,7 +97,6 @@ export class Renderer {
                 entryPoint : "vs_main",
                 buffers: [this.triangleMesh.bufferLayout,]
             },
-    
             fragment : {
                 module : this.device.createShaderModule({
                     code : shader
@@ -111,11 +106,9 @@ export class Renderer {
                     format : this.format
                 }]
             },
-    
             primitive : {
                 topology : "triangle-list"
             },
-    
             layout: pipelineLayout
         });
 
@@ -126,8 +119,7 @@ export class Renderer {
     }
 
     render = () => {
-        
-        this.t += 0.01;
+         this.t += 0.01;
         if (this.t > 2.0 * Math.PI) {
             this.t -= 2.0 * Math.PI;
         }
@@ -171,13 +163,11 @@ export class Renderer {
                 storeOp: "store"
             }]
         });
-        
-        renderpass.setPipeline(this.pipeline);
+         renderpass.setPipeline(this.pipeline);
         renderpass.setVertexBuffer(0, this.triangleMesh.buffer);
         renderpass.setBindGroup(0, this.bindGroup);
         renderpass.draw(3, 1, 0, 0);
         renderpass.end();
-    
         this.device.queue.submit([commandEncoder.finish()]);
 
         requestAnimationFrame(this.render);

@@ -63,8 +63,7 @@ fn rayColor(ray: Ray) -> vec3<f32> {
     var renderState: RenderState;
 
     for (var i: u32 = 0; i < u32(scene.sphereCount); i++) {
-        
-        var newRenderState: RenderState = hit(ray, objects.spheres[i], 0.001, nearestHit, renderState);
+         var newRenderState: RenderState = hit(ray, objects.spheres[i], 0.001, nearestHit, renderState);
 
         if (newRenderState.hit) {
             nearestHit = newRenderState.t;
@@ -80,7 +79,6 @@ fn rayColor(ray: Ray) -> vec3<f32> {
 }
 
 fn hit(ray: Ray, sphere: Sphere, tMin: f32, tMax: f32, oldRenderState: RenderState) -> RenderState {
-    
     let co: vec3<f32> = ray.origin - sphere.center;
     let a: f32 = dot(ray.direction, ray.direction);
     let b: f32 = 2.0 * dot(ray.direction, co);

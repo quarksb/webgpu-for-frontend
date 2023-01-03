@@ -34,7 +34,6 @@ export class Renderer {
         await this.setupDevice();
 
         await this.createAssets();
-    
         await this.makePipeline();
     }
 
@@ -84,7 +83,6 @@ export class Renderer {
             ]
 
         });
-    
         this.bindGroup = this.device.createBindGroup({
             layout: bindGroupLayout,
             entries: [
@@ -104,11 +102,9 @@ export class Renderer {
                 }
             ]
         });
-        
-        const pipelineLayout = this.device.createPipelineLayout({
+         const pipelineLayout = this.device.createPipelineLayout({
             bindGroupLayouts: [bindGroupLayout]
         });
-    
         this.pipeline = this.device.createRenderPipeline({
             vertex : {
                 module : this.device.createShaderModule({
@@ -117,7 +113,6 @@ export class Renderer {
                 entryPoint : "vs_main",
                 buffers: [this.triangleMesh.bufferLayout,]
             },
-    
             fragment : {
                 module : this.device.createShaderModule({
                     code : shader
@@ -127,11 +122,9 @@ export class Renderer {
                     format : this.format
                 }]
             },
-    
             primitive : {
                 topology : "triangle-list"
             },
-    
             layout: pipelineLayout
         });
 
@@ -155,8 +148,7 @@ export class Renderer {
 
         this.device.queue.writeBuffer(this.uniformBuffer, 64, <ArrayBuffer>view); 
         this.device.queue.writeBuffer(this.uniformBuffer, 128, <ArrayBuffer>projection); 
-        
-        //command encoder: records draw commands for submission
+         //command encoder: records draw commands for submission
         const commandEncoder : GPUCommandEncoder = this.device.createCommandEncoder();
         //texture view: image view to the color buffer in this case
         const textureView : GPUTextureView = this.context.getCurrentTexture().createView();
@@ -169,8 +161,7 @@ export class Renderer {
                 storeOp: "store"
             }]
         });
-        
-        renderpass.setPipeline(this.pipeline);
+         renderpass.setPipeline(this.pipeline);
         renderpass.setVertexBuffer(0, this.triangleMesh.buffer);
         triangles.forEach((triangle) => {
 
@@ -179,10 +170,8 @@ export class Renderer {
             this.device.queue.writeBuffer(this.uniformBuffer, 0, <ArrayBuffer>model);
             renderpass.setBindGroup(0, this.bindGroup); 
             renderpass.draw(3, 1, 0, 0);
-            
-        });
+             });
         renderpass.end();
-    
         this.device.queue.submit([commandEncoder.finish()]);
 
     }
